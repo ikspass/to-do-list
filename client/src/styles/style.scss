@@ -1,0 +1,63 @@
+$white: #FFFFFF;
+$green: #9CE536;
+$light-gray: #D9D9D9;
+$dark-gray: #818181;
+$black: #000000;
+
+*{
+  margin: 0;
+  padding: 0;
+}
+
+@font-face {
+  font-family: Roboto;
+  src: url(fonts/Roboto-VariableFont_wdth\,wght.ttf);
+}
+
+%flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+%flex-column {
+  display: flex;
+  flex-direction: column
+}
+
+.normal-text{
+  font: {
+    family: Roboto;
+    size: 14px;
+    style: normal;
+    weight: 400;
+  }
+  line-height: normal;
+}
+
+.heading-text{
+  font: {
+    family: Roboto;
+    size: 17px;
+    style: normal;
+    weight: 700;
+  }
+  line-height: normal;
+  text-transform: uppercase;
+}
+
+.green-text{ 
+  color: $green;
+}
+
+.small-text{
+
+}
+
+.task-container{
+  @extend %flex-column;
+  border-radius: 10px;
+  border: 1px solid $light-gray;
+  gap: 15px;
+  padding: 10px 20px;
+  width: 400px;
+}
