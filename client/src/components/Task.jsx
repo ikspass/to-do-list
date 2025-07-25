@@ -6,10 +6,8 @@ const Task = ({title, description, date, status}) => {
       <p className='heading-text'>{title}</p>
       <p className='normal-text'>{description}</p>
       <p className='normal-text'>{date}</p>
-      {status ?
+      {status &&
         <p className='normal-text green-text'>Выполнено</p>
-        :
-        ''
       }
     </div>
   )
