@@ -6,9 +6,13 @@ import Button from "./components/UI/Button/Button";
 import AddTask from "./components/AddTask";
 import IconButton from "./components/UI/IconButton/IconButton";
 import EditTask from "./components/EditTask";
+import Modal from "./components/Modal";
 
 function App() {
   const [activeTask, setActiveTask] = useState(null);
+
+  const [addTaskModal, setAddTaskModal] = useState(false)
+  const [editTaskModal, setEditTaskModal] = useState(false)
 
   const tasks = [
     {
@@ -43,6 +47,24 @@ function App() {
 
   return (
     <div className="page-container">
+      <Modal 
+        children={
+          <AddTask
+        
+          />
+        }
+        isOpen={addTaskModal}
+        onClose={() => {setAddTaskModal(false)}}
+      />
+      <Modal 
+        children={
+          <EditTask
+        
+          />
+        }
+        isOpen={editTaskModal}
+        onClose={() => {setEditTaskModal(false)}}
+      />
       <PinList selected={0} values={["Выполнено", "Невыполнено"]} />
       <div className="horizontal-container">
         <div className="tasks-list">
@@ -53,19 +75,21 @@ function App() {
               description={task.description}
               date={task.date}
               isActive={activeTask === index}
+              key={index}
             />
           ))}
         </div>
         <div className="buttons-list">
-          <Button>Добавить задачу</Button>
-          <Button>Отложить задачу</Button>
-          <Button>Редактировать задачу</Button>
-          <Button>Удалить задачу</Button>
+          <IconButton action='add' onClick={() => setAddTaskModal(true)}/>
+          {activeTask !== null && 
+            <>
+              <IconButton action='edit' onClick={() => setEditTaskModal(true)}/>
+              <IconButton action='prorogue'/>
+              <IconButton action='delete'/>
+            </>
+          }
         </div>
-        <IconButton className='danger' action='add'/>
       </div>
-      <AddTask />
-      <EditTask />
     </div>
   );
 }

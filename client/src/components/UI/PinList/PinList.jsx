@@ -9,9 +9,9 @@ const PinList = ({values, selected, setSelected}) => {
       
         values.map((value, index) => 
           index === selected ? 
-            <button className={ 'normal-text ' + classes.pin + ' ' + classes.active}>{value}</button>
+            <button key={index} className={ 'normal-text ' + classes.pin + ' ' + classes.active}>{value}</button>
             :
-            <button className={ 'normal-text ' + classes.pin}>{value}</button>
+            <button key={index} className={ 'normal-text ' + classes.pin}>{value}</button>
         )
         :
         'Нет данных'
