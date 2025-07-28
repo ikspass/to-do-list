@@ -4,12 +4,30 @@
   transition: 0.3s;
   padding: 10px 20px;
   border-radius: 10px;
-  border: 1px solid #3AD29D;
+  border: 1px solid #d9d9d9;
   cursor: pointer;
   width: 100%;
 }
 
-.button:hover{
+.primary{
   color: white;
-  background-color: #3AD29D;
+  border: 1px solid #3AD29D;
+  background-color: #3AD29D;  
+}
+.danger{
+  color: white;
+  border: 1px solid #F03333;
+  background-color: #F03333; 
+}
+
+.button:hover{
+  /* color: white; */
+  /* background-color: #3AD29D; */
+  box-shadow: 0 0 10px 0px #87FDD3;
+  border: 1px solid white;
+}
+
+.danger:hover{
+  box-shadow: 0 0 10px 0px #fc6464;
+  border: 1px solid #F03333;
 }

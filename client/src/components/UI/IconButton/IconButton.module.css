@@ -1,0 +1,28 @@
+.button{
+  border: 1px solid #3AD29D;
+  width: 50px;
+  height: 50px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+  flex-shrink: 0;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.danger{
+  color: white;
+  border: 1px solid #d9d9d9;
+}
+
+.button:hover{
+  box-shadow: 0 0 10px 0px #87FDD3;
+  border: 1px solid white;
+}
+
+.danger:hover{
+  box-shadow: 0 0 10px 0px #F03333;
+  border: 1px solid white;
+}

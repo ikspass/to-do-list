@@ -8,6 +8,7 @@ $accent: #3AD29D;
 *{
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 @font-face {
@@ -23,6 +24,17 @@ $accent: #3AD29D;
 %flex-column {
   display: flex;
   flex-direction: column
+}
+
+.small-text{
+  font: {
+    family: Roboto;
+    size: 12px;
+    style: normal;
+    weight: 400;
+  }
+  color: $dark-gray;
+  line-height: normal;
 }
 
 .normal-text{
@@ -50,10 +62,6 @@ $accent: #3AD29D;
   color: $green;
 }
 
-.small-text{
-
-}
-
 .page-container{
   @extend %flex-column;
   padding: 20px 0 40px 0;
@@ -70,6 +78,13 @@ $accent: #3AD29D;
   padding: 10px 20px;
   width: 400px;
   box-sizing: border-box;
+  cursor: pointer;
+  transition: 0.3s;
+
+  &.active{
+    box-shadow: 0 0 10px 0px #87FDD3;
+    border: 1px solid white
+  }
 }
 
 .tasks-list{
@@ -87,4 +102,10 @@ $accent: #3AD29D;
 .horizontal-container{
   @extend %flex-row;
   justify-content: space-between;
+}
+
+.modal-container{
+  @extend %flex-column;
+  gap: 20px;
+  width: 500px;
 }
