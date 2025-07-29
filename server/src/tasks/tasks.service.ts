@@ -1,26 +1,70 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { CreateTaskDto } from './dto/create-task.dto';
 import { UpdateTaskDto } from './dto/update-task.dto';
+import { InjectModel } from '@nestjs/sequelize';
+import { Task } from './entities/task.entity';
 
 @Injectable()
 export class TasksService {
-  create(createTaskDto: CreateTaskDto) {
-    return 'This action adds a new task';
+  constructor(
+    @InjectModel(Task)
+    private taskRepository: typeof Task,
+  ) {}
+
+  async create(dto: CreateTaskDto) {
+    if(!dto){
+      throw new HttpException('Данные для создания не переданы', HttpStatus.BAD_REQUEST);
+    }
+
+    const task = await this.taskRepository.create(dto);
+    
+    return task;
   }
 
-  findAll() {
-    return `This action returns all tasks`;
+  async getAllByUserId(userId: number) {
+    const tasks = await this.taskRepository.findAll({
+      where: {userId}
+    });
+    
+    if (tasks.length === 0) {
+      throw new HttpException('У данного пользователя нет задач', HttpStatus.NOT_FOUND)
+    }
+
+    return tasks;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} task`;
+  async getOneById(id: number) {
+    const task = await this.taskRepository.findByPk(id);
+
+    if (!task) {
+      throw new HttpException('Нет задачи с таким идентификатором', HttpStatus.NOT_FOUND)
+    }
+
+    return task;
   }
 
-  update(id: number, updateTaskDto: UpdateTaskDto) {
-    return `This action updates a #${id} task`;
+  async update(id: number, dto: UpdateTaskDto) {
+    const task = await this.taskRepository.findByPk(id);
+
+    if(!task){
+      throw new HttpException('Задача не найдена', HttpStatus.NOT_FOUND);
+    }
+
+    if(!dto){
+      throw new HttpException('Данные для обновления не переданы', HttpStatus.BAD_REQUEST);
+    }
+
+    task.name = dto.name;
+    task.description = dto.description;
+    task.date = dto.date;
+
+    await task.save();
+    return task;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} task`;
+  async delete(id: number) {
+    return await this.taskRepository.destroy({
+      where: {id}
+    })
   }
 }

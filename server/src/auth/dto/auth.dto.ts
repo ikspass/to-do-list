@@ -1,7 +1,7 @@
 import { ApiProperty } from "@nestjs/swagger";
-import {IsNotEmpty, IsString, Length} from 'class-validator'
+import { IsNotEmpty, IsString, Length } from "class-validator";
 
-export class CreateUserDto {
+export class AuthDto {
   @ApiProperty({example: 'ikspass', description: 'Логин'})
   @IsString({message: 'Должно быть строкой'})
   @IsNotEmpty({ message: 'Не должно быть пустым' })

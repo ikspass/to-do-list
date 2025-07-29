@@ -7,7 +7,6 @@ interface TaskCreationAttrs {
   name: string
   description: string
   date: Date
-  time: Date
 }
 
 @Table ({tableName: 'tasks', updatedAt: false, createdAt: false})
@@ -34,12 +33,8 @@ export class Task extends Model <Task, TaskCreationAttrs> {
   declare description: string
 
   @ApiProperty({example: '2025-07-24', description: 'Дата'})
-  @Column({type: DataType.DATEONLY})
+  @Column({type: DataType.DATEONLY, allowNull: false})
   declare date: Date
-
-  @ApiProperty({example: '9:00', description: 'Время'})
-  @Column({type: DataType.TIME})
-  declare time: Date
 
   @ApiProperty({example: 'false', description: 'Статус'})
   @Column({type: DataType.BOOLEAN, allowNull: false})

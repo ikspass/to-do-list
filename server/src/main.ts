@@ -9,7 +9,7 @@ async function bootstrap() {
 
   const config = new DocumentBuilder()
     .setTitle('To-Do List')
-    // .setDescription('')
+    .setDescription('Study project')
     .build()
   
   const document = SwaggerModule.createDocument(app, config)
