@@ -54,6 +54,12 @@
   margin: 0 auto;
   gap: 20px;
 }
+@media (max-width: 768px) {
+  .page-container {
+    width: 100%;
+    padding: 20px;
+  }
+}
 
 .task-container {
   border-radius: 10px;
@@ -74,28 +80,62 @@
   box-shadow: 0 0 10px 0px #87FDD3;
   border: 1px solid white;
 }
+@media (max-width: 768px) {
+  .task-container {
+    width: 100%;
+  }
+}
 
 .tasks-grid {
   gap: 30px;
 }
-
 .tasks-group {
   gap: 10px;
 }
-
 .tasks-list {
   flex-wrap: wrap;
   gap: 20px;
+}
+.buttons-pannel {
+  width: 50px;
+  position: relative;
+  flex-shrink: 0;
+}
+@media (max-width: 500px) {
+  .buttons-pannel {
+    position: fixed;
+    width: calc(100% - 40px);
+    background-color: #FFFFFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    box-shadow: 5px 5px 20px 5px rgba(0, 0, 0, 0.1);
+    height: 80px;
+    bottom: 10px;
+  }
 }
 
 .buttons-list {
   gap: 10px;
   width: -moz-fit-content;
   width: fit-content;
+  position: fixed;
+}
+@media (max-width: 500px) {
+  .buttons-list {
+    flex-direction: row;
+  }
 }
 
 .horizontal-container {
   justify-content: space-between;
+}
+@media (max-width: 768px) {
+  .horizontal-container {
+    gap: 20px;
+    width: 100%;
+  }
 }
 
 .modal-container {
@@ -156,4 +196,9 @@
 }
 .exception-container Button {
   width: 70px;
+}
+@media (max-width: 768px) {
+  .exception-container {
+    top: 30%;
+  }
 }/*# sourceMappingURL=style.css.map */

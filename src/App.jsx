@@ -111,14 +111,16 @@ function App() {
             <p className="small-text">Добавьте задачу</p>
           )}
         </div>
-        <div className="buttons-list">
-          <IconButton action='add' onClick={() => setAddTaskModal(true)} />
-          {selectedTask !== null && 
-            <>
-              <IconButton action='edit' onClick={() => setEditTaskModal(true)} />
-              <IconButton action='delete' onClick={() => setDeleteException(true)} />
-            </>
-          }
+        <div className='buttons-pannel'>
+          <div className="buttons-list">
+            <IconButton action='add' onClick={() => setAddTaskModal(true)} />
+            {selectedTask !== null && 
+              <>
+                <IconButton action='edit' onClick={() => setEditTaskModal(true)} />
+                <IconButton action='delete' onClick={() => setDeleteException(true)} />
+              </>
+            }
+          </div>
         </div>
       </div>
     </div>
