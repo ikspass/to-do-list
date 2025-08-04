@@ -1,0 +1,29 @@
+.input{
+  border: 1px solid #d9d9d9;
+  border-radius: 100px;
+  padding: 7px 20px;
+  transition: 0.3s;
+  width: 100%;
+}
+
+.title{
+  padding-left: 10px;
+  padding-bottom: 10px;
+}
+
+.container{
+  width: 100%;
+}
+
+.buttonContainer{
+  display: flex;
+  gap: 20px;
+  height: 30px;
+}
+
+.input:focus{
+  outline: none;
+  box-shadow: 0 0 10px 0px #87FDD3;
+  /* border: 1px solid #3AD29D; */
+  border: 1px solid white;
+}
