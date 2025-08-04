@@ -43,6 +43,11 @@
   line-height: normal;
   text-transform: uppercase;
 }
+@media (max-width: 500px) {
+  .heading-text {
+    font-size: 16px;
+  }
+}
 
 .green-text {
   color: #3AD29D;
@@ -73,8 +78,10 @@
   height: -moz-fit-content;
   height: fit-content;
 }
-.task-container:hover {
-  border: 1px solid #87FDD3;
+@media (min-width: 768px) {
+  .task-container:hover {
+    border: 1px solid #87FDD3;
+  }
 }
 .task-container.active {
   box-shadow: 0 0 10px 0px #87FDD3;
@@ -89,6 +96,12 @@
 .tasks-grid {
   gap: 30px;
 }
+@media (max-width: 768px) {
+  .tasks-grid {
+    width: 100%;
+  }
+}
+
 .tasks-group {
   gap: 10px;
 }

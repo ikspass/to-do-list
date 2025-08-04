@@ -24,6 +24,9 @@ const AddTask = ({onClose}) => {
     else{
       addTask(name, description, date);
       onClose();
+      setName('');
+      setDescription('');
+      setDate(new Date().toISOString().split('T')[0]);
     }
   }
 

@@ -27,7 +27,6 @@ function App() {
 
   const [addTaskModal, setAddTaskModal] = useState(false);
   const [editTaskModal, setEditTaskModal] = useState(false);
-  const [deleteTaskModal, setDeleteTaskModal] = useState(false);
 
   const [deleteException, setDeleteException] = useState(false);
 
@@ -45,6 +44,7 @@ function App() {
   const handleDeleteTask = () => {
     if(selectedTask) {
       deleteTask(selectedTask.id)
+      setSelectedTask(null)
     }
   }
 
@@ -114,7 +114,7 @@ function App() {
         <div className='buttons-pannel'>
           <div className="buttons-list">
             <IconButton action='add' onClick={() => setAddTaskModal(true)} />
-            {selectedTask !== null && 
+            {selectedTask && 
               <>
                 <IconButton action='edit' onClick={() => setEditTaskModal(true)} />
                 <IconButton action='delete' onClick={() => setDeleteException(true)} />
