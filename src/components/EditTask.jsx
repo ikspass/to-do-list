@@ -1,12 +1,28 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Button from './UI/Button/Button';
 import Input from './UI/Input/Input';
+import { editTask } from '../utils/Tasks'
 
-const EditTask = () => {
+const EditTask = ({task, onClose}) => {
   
   const [name, setName] = useState('')
   const [description, setDescription] = useState('')
   const [date, setDate] = useState('')
+
+  useEffect(() => {
+    if(task){
+      setName(task.name);
+      setDescription(task.description);
+      setDate(task.date);
+    }
+  }, [task])
+  
+
+  const confirm = () => {
+    editTask(task.id, name, description, date)
+    
+    onClose();
+  }
 
   return (
     <div className='modal-container'>
@@ -29,7 +45,7 @@ const EditTask = () => {
         value={date}
         onChange={e => setDate(e.target.value)}
       />
-      <Button className='primary'>Сохранить</Button>
+      <Button className='primary' onClick={confirm}>Сохранить</Button>
     </div>
   )
 }

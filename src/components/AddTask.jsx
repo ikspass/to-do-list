@@ -1,11 +1,17 @@
 import React, { useState } from 'react';
 import Button from './UI/Button/Button';
 import Input from './UI/Input/Input';
+import { addTask } from './../utils/Tasks'
 
-const AddTask = () => {
+const AddTask = ({onClose}) => {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [date, setDate] = useState(new Date().toISOString().split('T')[0]);
+
+  const confirm = () => {
+    addTask(name, description, date);
+    onClose();
+  }
 
   return (
     <div className='modal-container'>
@@ -30,7 +36,7 @@ const AddTask = () => {
         value={date}
         onChange={e => setDate(e.target.value)}
       />
-      <Button className='primary'>Добавить</Button>
+      <Button onClick={confirm} className='primary'>Добавить</Button>
     </div>
   );
 }

@@ -80,6 +80,7 @@ $accent: #3AD29D;
   box-sizing: border-box;
   cursor: pointer;
   transition: 0.3s;
+  height: fit-content;
 
   &:hover{
     border: 1px solid #87FDD3;
@@ -89,6 +90,16 @@ $accent: #3AD29D;
     box-shadow: 0 0 10px 0px #87FDD3;
     border: 1px solid white
   }
+}
+
+.tasks-grid{
+  @extend %flex-column;
+  gap: 30px;
+}
+
+.tasks-group{
+  @extend %flex-column;
+  gap: 10px
 }
 
 .tasks-list{

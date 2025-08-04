@@ -1,4 +1,4 @@
-const addTask = (name, description, date) => {
+export const addTask = (name, description, date) => {
   if(name === '' || date === ''){
     alert('Поля "Задача" и "Дата" не могут быть пустыми')
   }
@@ -20,22 +20,24 @@ const addTask = (name, description, date) => {
   localStorage.setItem('tasks', JSON.stringify(tasks));
 }
 
-const editTask = (id, name, description, date) => {
-  const tasks = JSON.parse(localStorage.getItem('tasks'));
+export const editTask = (id, name, description, date) => {
+  const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
 
   const taskToUpdate = tasks.find(item => item.id === id);
 
-  if(taskToUpdate){
+  if (taskToUpdate) {
     taskToUpdate.name = name;
     taskToUpdate.description = description;
     taskToUpdate.date = date;
-  }
-  else{
-    console.log('При редактировании задачи произошла ошибка.')
+
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+
+  } else {
+    console.log('При редактировании задачи произошла ошибка.');
   }
 }
 
-const deleteTask = (id) => {
+export const deleteTask = (id) => {
   const tasks = JSON.parse(localStorage.getItem('tasks'));
   
   const newTasks = tasks.filter(item => item.id !== id);
@@ -43,11 +45,11 @@ const deleteTask = (id) => {
   localStorage.setItem('tasks', JSON.stringify(newTasks));
 }
 
-const getTasks = () => {
+export const getTasks = () => {
   return JSON.parse(localStorage.getItem('tasks'));
 }
 
-const getTaskById = (id) => {
+export const getTaskById = (id) => {
   const tasks = JSON.parse(localStorage.getItem('tasks'));
   const task = tasks.find(item => item.id === id);
   if(task){
@@ -58,22 +60,28 @@ const getTaskById = (id) => {
   }
 }
 
-const doneTask = (id) => {
+export const doneTask = (id) => {
   const tasks = JSON.parse(localStorage.getItem('tasks'));
   const task = tasks.find(item => item.id === id);
   if(task){
     task.status = true;
+
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+
   }
   else{
     console.log('При выполнении задачи произошла ошибка')
   }
 }
 
-const unDoneTask = (id) => {
+export const unDoneTask = (id) => {
   const tasks = JSON.parse(localStorage.getItem('tasks'));
   const task = tasks.find(item => item.id === id);
   if(task){
     task.status = false;
+
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+
   }
   else{
     console.log('При отмене выполнения задачи произошла ошибка')

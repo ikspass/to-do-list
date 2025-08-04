@@ -20,7 +20,7 @@
   background-color: #F03333; 
 }
 
-.button:hover
+.button:hover,
 .button:focus{
   /* color: white; */
   /* background-color: #3AD29D; */

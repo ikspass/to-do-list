@@ -13,7 +13,7 @@
   flex-direction: row;
 }
 
-.modal-container, .buttons-list, .task-container, .page-container {
+.modal-container, .buttons-list, .tasks-group, .tasks-grid, .task-container, .page-container {
   display: flex;
   flex-direction: column;
 }
@@ -64,6 +64,8 @@
   box-sizing: border-box;
   cursor: pointer;
   transition: 0.3s;
+  height: -moz-fit-content;
+  height: fit-content;
 }
 .task-container:hover {
   border: 1px solid #87FDD3;
@@ -71,6 +73,14 @@
 .task-container.active {
   box-shadow: 0 0 10px 0px #87FDD3;
   border: 1px solid white;
+}
+
+.tasks-grid {
+  gap: 30px;
+}
+
+.tasks-group {
+  gap: 10px;
 }
 
 .tasks-list {
