@@ -40,3 +40,20 @@
     outline: none;
   }
 }
+.button:active{
+  box-shadow: 0 0 10px 0px #87FDD3;
+  border: 1px solid white;
+  outline: none;
+}
+
+.danger:active{
+  box-shadow: 0 0 10px 0px #fc6464;
+  border: 1px solid #F03333;
+  outline: none;
+}
+
+.primary:active{
+  box-shadow: 0 0 10px 0px #87FDD3;
+  border: 1px solid #3AD29D;
+  outline: none;
+}

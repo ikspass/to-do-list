@@ -39,13 +39,16 @@
   }
 }
 
-.button:focus{
+.button:focus,
+.button:active{
   box-shadow: 0 0 10px 0px #87FDD3;
   border: 1px solid white;
   outline: none;
 }
 
-.danger:focus{
+
+.danger:focus,
+.button:active{
   box-shadow: 0 0 10px 0px #F03333;
   border: 1px solid white;
   outline: none;
