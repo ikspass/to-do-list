@@ -12,7 +12,7 @@ const Modal = ({isOpen, onClose, children}) => {
   return (
     <div className={`modal-overlay${isOpen ? ' active' : ''}`} onClick={handleOverlayClick}>
       <div className={`modal${isOpen ? ' active' : ''}`}>
-        <IconButton onClick={onClose} action='return'/>
+        <IconButton style={{alignSelf: 'end'}} onClick={onClose} action='return'/>
         {children}
       </div>
     </div>

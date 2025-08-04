@@ -178,6 +178,11 @@
 .modal.active {
   top: 0;
 }
+@media (max-width: 550px) {
+  .modal {
+    width: calc(100% - 40px);
+  }
+}
 
 .exception-container {
   gap: 20px;
@@ -200,5 +205,10 @@
 @media (max-width: 768px) {
   .exception-container {
     top: 30%;
+  }
+}
+@media (max-width: 500px) {
+  .exception-container {
+    width: calc(100% - 40px);
   }
 }/*# sourceMappingURL=style.css.map */

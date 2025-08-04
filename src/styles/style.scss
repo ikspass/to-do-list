@@ -211,6 +211,10 @@ $accent: #3AD29D;
   &.active {
     top: 0;
   }
+
+  @media(max-width: 550px){
+    width: calc(100% - 40px);
+  }
 }
 
 .exception-container{
@@ -235,5 +239,9 @@ $accent: #3AD29D;
 
   @media (max-width: 768px) {
     top: 30%;
+  }
+
+  @media (max-width: 500px) {
+    width: calc(100% - 40px);
   }
 }
