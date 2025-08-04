@@ -2,7 +2,7 @@ import React from 'react'
 import Button from './UI/Button/Button';
 import { doneTask, unDoneTask } from '../utils/Tasks'
 
-const Task = ({task, isActive, onClick}) => {
+const Task = ({task, isActive, onClick, update}) => {
   const handleDoneButtonClick = () => {
     if(!task.status){
       doneTask(task.id);
@@ -10,6 +10,7 @@ const Task = ({task, isActive, onClick}) => {
     else{
       unDoneTask(task.id);
     }
+    update();
   }
 
   return (

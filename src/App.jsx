@@ -5,14 +5,16 @@ import AddTask from "./components/AddTask";
 import IconButton from "./components/UI/IconButton/IconButton";
 import EditTask from "./components/EditTask";
 import Modal from "./components/Modal";
-import { getTasks } from './utils/Tasks'
-import DeleteTask from "./components/DeleteTask";
-import ProrogueTask from "./components/ProrogueTask";
+import { deleteTask, getTaskById, getTasks } from './utils/Tasks';
+import Button from "./components/UI/Button/Button";
+import Exception from "./components/Exception";
 
 function App() {
   const [selectedTask, setSelectedTask] = useState(null);
+  const [tasks, setTasks] = useState(getTasks() || []);
+  const [showAll, setShowAll] = useState(false);
 
-  const [tasks, setTasks] = useState(getTasks() || [])
+  const currentDate = new Date().toISOString().split('T')[0];
 
   const groupedTasks = tasks.reduce((acc, task) => {
     const date = task.date;
@@ -23,10 +25,11 @@ function App() {
     return acc;
   }, {});
 
-  const [addTaskModal, setAddTaskModal] = useState(false)
-  const [editTaskModal, setEditTaskModal] = useState(false)
-  const [prorogueTaskModal, setProrogueTaskModal] = useState(false)
-  const [deleteTaskModal, setDeleteTaskModal] = useState(false)
+  const [addTaskModal, setAddTaskModal] = useState(false);
+  const [editTaskModal, setEditTaskModal] = useState(false);
+  const [deleteTaskModal, setDeleteTaskModal] = useState(false);
+
+  const [deleteException, setDeleteException] = useState(false);
 
   const selectTask = (task) => {
     setSelectedTask(selectedTask && selectedTask.id === task.id ? null : task);
@@ -34,12 +37,38 @@ function App() {
 
   const updateTasks = () => {
     setTasks(getTasks());
+    if (selectedTask) {
+      setSelectedTask(getTaskById(selectedTask.id));
+    }
+  };
+
+  const handleDeleteTask = () => {
+    if(selectedTask) {
+      deleteTask(selectedTask.id)
+    }
   }
 
+  const filteredGroupedTasks = showAll
+    ? groupedTasks
+    : Object.fromEntries(
+        Object.entries(groupedTasks).filter(([date]) => date >= currentDate)
+      );
+
+  const sortedDates = Object.keys(filteredGroupedTasks).sort((a, b) => new Date(a) - new Date(b));
 
   return (
     <div className="page-container">
+      <Exception 
+        message={'Вы уверены что хотите удалить задачу?'}
+        action={'or'}
+        isOpen={deleteException}
+        onClose={() => {setDeleteException(false); updateTasks()}}
+        confirm={handleDeleteTask}
+      />
       <p className="heading-text">Список задач</p>
+      <Button onClick={() => setShowAll(!showAll)}>
+        {showAll ? 'Показать текущие и будущие' : 'Показать все'}
+      </Button>
       <Modal 
         children={
           <AddTask
@@ -59,55 +88,35 @@ function App() {
         isOpen={editTaskModal}
         onClose={() => {setEditTaskModal(false);}}
       />
-      <Modal 
-        children={
-          <ProrogueTask
-            task={selectedTask}
-            onClose={() => {setProrogueTaskModal(false); updateTasks()}}
-          />
-        }
-        isOpen={prorogueTaskModal}
-        onClose={() => {setProrogueTaskModal(false);}}
-      />
-      <Modal 
-        children={
-          <DeleteTask
-            task={selectedTask}
-            onClose={() => {setDeleteTaskModal(false); updateTasks()}}
-          />
-        }
-        isOpen={deleteTaskModal}
-        onClose={() => {setDeleteTaskModal(false);}}
-      />
       <div className="horizontal-container">
-      <div className="tasks-grid">
-          {Object.keys(groupedTasks).length > 0 ? (
-            Object.keys(groupedTasks).map(date => (
+        <div className="tasks-grid">
+          {sortedDates.length > 0 ? (
+            sortedDates.map(date => (
               <div key={date} className="tasks-group">
                 <p className='small-text'>{date}</p>
                 <div className="tasks-list">
-                  {groupedTasks[date].map(task => (
+                  {filteredGroupedTasks[date].map(task => (
                     <Task
                       onClick={() => selectTask(task)}
                       task={task}
                       isActive={selectedTask && selectedTask.id === task.id}
                       key={task.id}
+                      update={updateTasks}
                     />
                   ))}
                 </div>
               </div>
             ))
           ) : (
-            <p className="normal-text">Нет задач</p>
+            <p className="small-text">Добавьте задачу</p>
           )}
         </div>
         <div className="buttons-list">
-          <IconButton action='add' onClick={() => setAddTaskModal(true)}/>
+          <IconButton action='add' onClick={() => setAddTaskModal(true)} />
           {selectedTask !== null && 
             <>
-              <IconButton action='edit' onClick={() => setEditTaskModal(true)}/>
-              <IconButton action='prorogue' onClick={() => setProrogueTaskModal(true)}/>
-              <IconButton action='delete' onClick={() => setDeleteTaskModal(true)}/>
+              <IconButton action='edit' onClick={() => setEditTaskModal(true)} />
+              <IconButton action='delete' onClick={() => setDeleteException(true)} />
             </>
           }
         </div>

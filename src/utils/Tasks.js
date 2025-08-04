@@ -1,8 +1,4 @@
 export const addTask = (name, description, date) => {
-  if(name === '' || date === ''){
-    alert('Поля "Задача" и "Дата" не могут быть пустыми')
-  }
-
   const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
 
   const maxId = tasks.length > 0 ? Math.max(...tasks.map(task => task.id)) : 0;
@@ -55,9 +51,6 @@ export const getTaskById = (id) => {
   if(task){
     return task;
   }
-  else{
-    console.log('При получении задачи по id произошла ошибка')
-  }
 }
 
 export const doneTask = (id) => {
@@ -67,7 +60,6 @@ export const doneTask = (id) => {
     task.status = true;
 
     localStorage.setItem('tasks', JSON.stringify(tasks));
-
   }
   else{
     console.log('При выполнении задачи произошла ошибка')

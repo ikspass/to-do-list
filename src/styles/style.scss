@@ -59,7 +59,7 @@ $accent: #3AD29D;
 }
 
 .green-text{ 
-  color: $green;
+  color: $accent;
 }
 
 .page-container{
@@ -161,5 +161,26 @@ $accent: #3AD29D;
 
   &.active {
     top: 0;
+  }
+}
+
+.exception-container{
+  @extend %flex-column;
+  gap: 20px;
+  position: absolute;
+  top: 20%;
+  box-shadow: 5px 5px 20px 5px rgba(0, 0, 0, 0.2);
+  background-color: $white;
+  padding: 15px 20px;
+  justify-self: center;
+  border-radius: 15px;
+  width: 400px;
+  & .buttons-container{
+    @extend %flex-row;
+    gap: 10px;
+    align-self: end;
+  }
+  & Button{
+    width: 70px;
   }
 }

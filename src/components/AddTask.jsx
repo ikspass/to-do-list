@@ -2,19 +2,41 @@ import React, { useState } from 'react';
 import Button from './UI/Button/Button';
 import Input from './UI/Input/Input';
 import { addTask } from './../utils/Tasks'
+import Exception from './Exception';
 
 const AddTask = ({onClose}) => {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [date, setDate] = useState(new Date().toISOString().split('T')[0]);
+  const [message, setMessage] = useState('')
+  
+  const [exception, setException] = useState(false)
 
   const confirm = () => {
-    addTask(name, description, date);
-    onClose();
+    if(name === '') {
+      setMessage('Поле "Задача" не может быть пустым')
+      setException(true)
+    }
+    else if(date === '') {
+      setMessage('Поле "Дата" не может быть пустым')
+      setException(true)
+    }
+    else{
+      addTask(name, description, date);
+      onClose();
+    }
   }
 
+
   return (
+    
     <div className='modal-container'>
+      <Exception 
+        message={message}
+        action={'ok'}
+        isOpen={exception}
+        onClose={() => {setException(false)}}
+      />
       <p className="heading-text">Добавить задачу</p>
       <Input
         type='text'

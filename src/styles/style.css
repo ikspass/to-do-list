@@ -8,12 +8,12 @@
   font-family: Roboto;
   src: url(fonts/Roboto-VariableFont_wdth\,wght.ttf);
 }
-.horizontal-container, .tasks-list {
+.exception-container .buttons-container, .horizontal-container, .tasks-list {
   display: flex;
   flex-direction: row;
 }
 
-.modal-container, .buttons-list, .tasks-group, .tasks-grid, .task-container, .page-container {
+.exception-container, .modal-container, .buttons-list, .tasks-group, .tasks-grid, .task-container, .page-container {
   display: flex;
   flex-direction: column;
 }
@@ -45,7 +45,7 @@
 }
 
 .green-text {
-  color: #9CE536;
+  color: #3AD29D;
 }
 
 .page-container {
@@ -137,4 +137,23 @@
 }
 .modal.active {
   top: 0;
+}
+
+.exception-container {
+  gap: 20px;
+  position: absolute;
+  top: 20%;
+  box-shadow: 5px 5px 20px 5px rgba(0, 0, 0, 0.2);
+  background-color: #FFFFFF;
+  padding: 15px 20px;
+  justify-self: center;
+  border-radius: 15px;
+  width: 400px;
+}
+.exception-container .buttons-container {
+  gap: 10px;
+  align-self: end;
+}
+.exception-container Button {
+  width: 70px;
 }/*# sourceMappingURL=style.css.map */
