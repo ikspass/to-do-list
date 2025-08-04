@@ -20,8 +20,10 @@ const EditTask = ({task, onClose}) => {
 
   const confirm = () => {
     editTask(task.id, name, description, date)
-    
     onClose();
+    setName(task.name);
+    setDescription(task.description);
+    setDate(task.date);
   }
 
   return (
