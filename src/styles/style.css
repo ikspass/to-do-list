@@ -90,6 +90,7 @@
 @media (max-width: 768px) {
   .task-container {
     width: 100%;
+    -webkit-tap-highlight-color: transparent;
   }
 }
 

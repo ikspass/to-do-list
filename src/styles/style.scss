@@ -103,6 +103,7 @@ $accent: #3AD29D;
 
   @media (max-width: 768px) {
     width: 100%;
+    -webkit-tap-highlight-color: transparent;
   }
 }
 
